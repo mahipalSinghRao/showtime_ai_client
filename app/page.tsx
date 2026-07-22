@@ -1,13 +1,13 @@
-import { Container } from "@/components/layout/container";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
+import HomePage from "@/features/home/home-page";
 
-import { ThemeToggle } from "@/components/shared/theme-toggle";
-
-export default function HomePage() {
+export default function Page() {
   return (
-    <main className="min-h-screen">
-      <Container className="flex h-screen items-center justify-center">
-        <ThemeToggle />
-      </Container>
-    </main>
+    <>
+      <Navbar />
+      <HomePage />
+      <Footer />
+    </>
   );
 }
