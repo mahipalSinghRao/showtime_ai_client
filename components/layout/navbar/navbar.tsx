@@ -1,6 +1,6 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { Heart, Search } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 
@@ -31,13 +31,21 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon">
+            {/* <Button variant="ghost" size="icon">
               <Search className="size-5" />
-            </Button>
+            </Button> */}
 
             <ThemeToggle />
+            <Link href="/watchlist">
+              <Button
+                size="icon"
+                className="h-10 w-10 rounded-full bg-black/60 backdrop-blur-md hover:bg-black/80"
+              >
+                <Heart className="h-5 w-5 scale-110 fill-red-500 text-red-500 transition-all duration-200" />
+              </Button>
+            </Link>
 
-            <Avatar fallback="MS" className="hidden md:flex" />
+            {/* <Avatar fallback="MS" className="hidden md:flex" /> */}
 
             <div className="max-lg:hidden">
               {isAuthenticated ? (

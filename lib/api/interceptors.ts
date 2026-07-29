@@ -44,7 +44,7 @@ apiClient.interceptors.response.use((response) => response,
                 return apiClient(originalRequest);
             } catch {
                 tokenManager.clear();
-                window.location.href = "/login";
+                window.location.href = "/auth/login";
                 return Promise.reject(error)
             } finally {
                 setRefreshing(false)

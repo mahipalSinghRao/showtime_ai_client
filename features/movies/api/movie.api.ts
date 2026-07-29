@@ -17,6 +17,8 @@ export const movieApi = baseApi.injectEndpoints({
                 page?: number;
                 limit?: number;
                 search?: string;
+                genres?: string;
+                sort?: string;
             }
         >({
             query: (params) => ({
