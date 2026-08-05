@@ -9,7 +9,7 @@ interface AiResultProps {
 
 export function AiResult({ recommendations }: AiResultProps) {
   if (!recommendations.length) return;
-  // console.log(recommendations);
+
 
   return (
     <section className="space-y-8">

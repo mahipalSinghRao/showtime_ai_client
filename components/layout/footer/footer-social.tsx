@@ -1,11 +1,6 @@
 import Link from "next/link";
 import { SiGithub, SiInstagram } from "@icons-pack/react-simple-icons";
 
-// console.log({
-//   Github,
-//   Linkedin,
-// });
-
 const SOCIALS = [
   {
     name: "GitHub",

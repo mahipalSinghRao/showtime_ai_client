@@ -17,6 +17,7 @@ interface MovieHeaderProps {
 const IMAGE_URL = "https://image.tmdb.org/t/p/original";
 
 export function MovieHeader({ movie }: MovieHeaderProps) {
+ 
   return (
     <section className="relative overflow-hidden">
       {/* Background */}
@@ -127,7 +128,7 @@ export function MovieHeader({ movie }: MovieHeaderProps) {
             </div>
 
             {/* Actions */}
-            <MovieActions trailerKey={movie.trailerKey} />
+            <MovieActions trailerKey={movie.trailerKey} movieId={movie._id} />
           </motion.div>
         </div>
       </Container>

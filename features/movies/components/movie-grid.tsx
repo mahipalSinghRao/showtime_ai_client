@@ -13,7 +13,6 @@ export function MovieGrid({
   pagination,
   watchlistMode = false,
 }: MovieGridProps) {
-  console.log(movies);
   return (
     <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {movies.map((movie) => (

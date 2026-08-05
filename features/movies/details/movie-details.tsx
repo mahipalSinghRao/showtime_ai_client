@@ -26,7 +26,6 @@ export function MovieDetails({ id }: MovieDetailsProps) {
   }
 
   const movie = data.data;
-  console.log(movie);
 
   return (
     <main>

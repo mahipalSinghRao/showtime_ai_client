@@ -1,28 +1,23 @@
 "use client";
 
-import { Heart, Play, Share2 } from "lucide-react";
+import { Share2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { TrailerButton } from "../trailer/components/trailer-button";
+import { WatchlistButton } from "@/features/watchlist/components/watchlist-button";
 
 interface MovieActionsProps {
   trailerKey?: string;
+  watchlistMode?: boolean;
+  movieId: string;
 }
 
-export function MovieActions({ trailerKey }: MovieActionsProps) {
-  const watchTrailer = () => {
-    if (!trailerKey) return;
-
-    // window.open(
-    //   `https://www.youtube.com/watch?v=${trailerKey}`,
-    //   "_blank",
-    //   "noopener,noreferrer",
-    // );
-
-    const trailerUrl = `https://www.youtube.com/watch?v=${trailerKey}`;
-    window.open(trailerUrl, "_blank", "noopener,noreferrer");
-  };
-
+export function MovieActions({
+  trailerKey,
+  watchlistMode,
+  movieId,
+}: MovieActionsProps) {
   const shareMovie = async () => {
     const url = window.location.href;
 
@@ -41,16 +36,13 @@ export function MovieActions({ trailerKey }: MovieActionsProps) {
   };
 
   return (
-    <div className="mt-8 flex flex-wrap gap-4 justify-center">
-      <Button size="lg" onClick={watchTrailer} disabled={!trailerKey}>
-        <Play className="mr-2 size-5 fill-current" />
-        Watch Trailer
-      </Button>
+    <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <TrailerButton trailerKey={trailerKey} />
 
-      <Button variant="secondary" size="lg">
-        <Heart className="mr-2 size-5" />
-        Watchlist
-      </Button>
+      <WatchlistButton
+        movieId={movieId}
+        variant={watchlistMode ? "watchlist" : "default"}
+      />
 
       <Button variant="outline" size="lg" onClick={shareMovie}>
         <Share2 className="mr-2 size-5" />

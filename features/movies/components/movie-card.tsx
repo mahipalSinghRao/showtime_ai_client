@@ -10,6 +10,7 @@ import { MoviePoster } from "./movie-poster";
 import { RatingBadge } from "./rating-badge";
 import { Button } from "@/components/ui/button";
 import { WatchlistButton } from "@/features/watchlist/components/watchlist-button";
+import { TrailerButton } from "../trailer/components/trailer-button";
 
 interface MovieCardProps {
   movie: Movie;
@@ -25,15 +26,16 @@ export function MovieCard({ movie, watchlistMode = false }: MovieCardProps) {
           variant={watchlistMode ? "watchlist" : "default"}
         />
       </div>
+      <div className="absolute bottom-28 left-4 z-20 translate-y-4 rounded-full opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        {/* <Button size="sm">Play</Button> */}
+        <TrailerButton trailerKey={movie.trailerKey} movieTitle={movie.title} />
+      </div>
       <Link href={`/movies/${movie._id}`}>
         <div className="group relative overflow-hidden rounded-2xl">
           <MoviePoster posterPath={movie?.posterPath} title={movie?.title} />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 transition-all duration-300 group-hover:opacity-100" />
 
-          <div className="absolute bottom-4 left-4 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-            <Button size="sm">Play</Button>
-          </div>
           <div className="absolute top-4 right-4 rounded-full bg-black/60 backdrop-blur-md">
             {movie?.voteAverage > 0 ? (
               <RatingBadge rating={movie?.voteAverage} />

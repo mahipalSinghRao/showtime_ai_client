@@ -13,8 +13,6 @@ export function Movies() {
 
   const movies = data?.data.movies ?? [];
 
-//   console.log(movies)
-
   if (isLoading) {
     return <LoadingState text="Loading movies..." />;
   }

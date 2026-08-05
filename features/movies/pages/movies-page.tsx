@@ -41,7 +41,7 @@ export function MoviesPage() {
   }
 
   const movies = data?.data.movies ?? [];
-  console.log(data);
+
   return (
     <Container>
       <main className="space-y-10 py-10">

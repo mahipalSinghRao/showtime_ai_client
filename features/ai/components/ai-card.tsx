@@ -19,7 +19,7 @@ interface AiCardProps {
 export function AiCard({ recommendation }: AiCardProps) {
   const movie = recommendation;
   const reason = recommendation.reason;
-  // console.log(recommendation)
+
 
   return (
     <Card className="overflow-hidden rounded-3xl border transition-all hover:shadow-xl">

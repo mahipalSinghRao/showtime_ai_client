@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Heart, LogOutIcon, Menu } from "lucide-react";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 import { Button } from "@/components/ui/button";
 import { useAppSelector } from "@/store/hooks";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { Avatar } from "@/components/shared/avatar";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -17,6 +19,7 @@ const NAV_LINKS = [
 
 export function MobileNavbar() {
   const { isAuthenticated, user } = useAppSelector((state) => state.auth);
+  const isAdmin = user?.role === "ADMIN";
   return (
     <div className="lg:hidden">
       <Sheet>
@@ -38,14 +41,43 @@ export function MobileNavbar() {
               </Link>
             ))}
           </div>
-
+          {/* 
           <div className="">
             {isAuthenticated ? (
               <Button variant="outline" className="w-full">
                 Welcome, {user?.fullName}{" "}
               </Button>
             ) : (
-              <Button asChild className="w-full left-0 right-0">
+              <Button asChild className="right-0 left-0 w-full">
+                <Link href="/auth/login">Login</Link>
+              </Button>
+            )}
+          </div> */}
+
+          <div className="flex flex-col items-center">
+            <ThemeToggle />
+            {isAuthenticated && (
+              <Link href="/watchlist">
+                <Button
+                  size="icon"
+                  className="h-10 w-10 rounded-full bg-black/60 backdrop-blur-md hover:bg-black/80"
+                >
+                  <Heart className="h-5 w-5 scale-110 fill-red-500 text-red-500 transition-all duration-200" />
+                  Whishlist
+                </Button>
+              </Link>
+            )}
+
+            {isAuthenticated ? (
+              <div className="w-full">
+                {isAdmin && (
+                  <Button asChild className="w-full">
+                    <Link href="/admin/dashboard">Admin Dashboard</Link>
+                  </Button>
+                )}
+              </div>
+            ) : (
+              <Button asChild>
                 <Link href="/auth/login">Login</Link>
               </Button>
             )}
