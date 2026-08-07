@@ -8,7 +8,6 @@ import { tokenManager } from "@/lib/api";
 import { useAppDispatch } from "@/store/hooks";
 import {
   clearAuth,
-  setAccessToken,
   setAuthenticated,
   setUser,
 } from "@/store/slices/auth.slice";

@@ -9,7 +9,7 @@ import { MovieCard } from "../components/movie-card";
 import { Container } from "@/components/layout/container";
 
 export function Movies() {
-  const { data, isLoading, error } = useGetMoviesQuery();
+  const { data, isLoading, error } = useGetMoviesQuery({ page: 1 });
 
   const movies = data?.data.movies ?? [];
 

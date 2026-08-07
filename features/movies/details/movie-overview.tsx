@@ -3,7 +3,7 @@
 import { Container } from "@/components/layout/container";
 import { Separator } from "@/components/ui/separator";
 
-import { Movie } from "../../api/movie.types";
+import { Movie } from "../api/movie.types";
 
 interface MovieOverviewProps {
   movie: Movie;
@@ -11,10 +11,10 @@ interface MovieOverviewProps {
 
 export function MovieOverview({ movie }: MovieOverviewProps) {
   const director =
-    movie.crew.find((person) => person.job === "Director")?.name ?? "Unknown";
+    movie?.crew?.find((person) => person.job === "Director")?.name ?? "Unknown";
 
   const productionCompanies =
-    movie.productionCompanies?.flat()?.join(", ") || "Unknown";
+    movie?.productionCompanies?.flat()?.join(", ") || "Unknown";
 
   return (
     <section className="py-16">

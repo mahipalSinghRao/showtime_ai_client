@@ -26,9 +26,10 @@ import { Loader2, RefreshCw } from "lucide-react";
 
 import { TMDB_SOURCES } from "../constants/tmdb-source";
 import { useSyncMoviesMutation } from "../api/admin.api";
+import { SyncMoviePayload } from "../types";
 
 export function SyncMovieForm() {
-  const [source, setSource] = useState("trending");
+  const [source, setSource] = useState<SyncMoviePayload["source"]>("trending");
   const [page, setPage] = useState(1);
 
   const [syncMovies, { isLoading }] = useSyncMoviesMutation();
@@ -65,7 +66,12 @@ export function SyncMovieForm() {
           <div className="space-y-2">
             <label className="text-sm font-medium">Source</label>
 
-            <Select value={source} onValueChange={setSource}>
+            <Select
+              value={source}
+              onValueChange={(value) =>
+                setSource(value as SyncMoviePayload["source"])
+              }
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select source" />
               </SelectTrigger>

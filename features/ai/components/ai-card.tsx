@@ -17,16 +17,16 @@ interface AiCardProps {
 }
 
 export function AiCard({ recommendation }: AiCardProps) {
-  const movie = recommendation;
+  // const movie = recommendation;
   const reason = recommendation.reason;
-
+  
 
   return (
     <Card className="overflow-hidden rounded-3xl border transition-all hover:shadow-xl">
       <div className="grid md:grid-cols-[220px_1fr]">
         {/* Poster */}
         <div className="p-5">
-          <MoviePoster posterPath={movie.posterPath} title={movie.title} />
+          <MoviePoster posterPath={recommendation?.movie?.posterPath} title={recommendation?.movie?.title} />
         </div>
 
         {/* Content */}
@@ -35,10 +35,10 @@ export function AiCard({ recommendation }: AiCardProps) {
             {/* Header */}
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-bold">{movie.title}</h2>
+                <h2 className="text-2xl font-bold">{recommendation?.movie.title}</h2>
 
                 <div className="mt-2 flex flex-wrap gap-2">
-                  {movie.genres.map((genre) => (
+                  {recommendation?.movie?.genres.map((genre) => (
                     <span
                       key={genre}
                       className="bg-primary/10 text-primary rounded-full px-3 py-1 text-xs font-medium"
@@ -49,12 +49,12 @@ export function AiCard({ recommendation }: AiCardProps) {
                 </div>
               </div>
 
-              <RatingBadge rating={movie.voteAverage || 0} />
+              <RatingBadge rating={recommendation?.movie.voteAverage || 0} />
             </div>
 
             {/* Overview */}
             <p className="text-muted-foreground line-clamp-3">
-              {movie.overview}
+              {recommendation?.movie.overview}
             </p>
 
             {/* AI Reason */}
@@ -73,13 +73,13 @@ export function AiCard({ recommendation }: AiCardProps) {
           {/* Footer */}
           <div className="mt-8 flex gap-3">
             <Button asChild>
-              <Link href={`/movies/${movie._id}`}>
+              <Link href={`/movies/${recommendation?.movie._id}`}>
                 View Details
                 <ArrowRight className="ml-2 size-4" />
               </Link>
             </Button>
 
-            <WatchlistButton movieId={movie._id} />
+            <WatchlistButton movieId={recommendation?.movie._id} />
           </div>
         </CardContent>
       </div>

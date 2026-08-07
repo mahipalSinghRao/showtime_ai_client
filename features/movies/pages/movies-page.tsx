@@ -58,7 +58,7 @@ export function MoviesPage() {
           <>
             <MovieGrid movies={movies} />
 
-            {data?.data?.pagination?.totalPage > 1 && (
+            {(data?.data?.pagination?.totalPage ?? 0) > 1 && (
               <MoviePagination
                 page={page}
                 totalPages={data?.data.pagination.totalPage ?? 1}

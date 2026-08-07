@@ -1,16 +1,17 @@
 "use client";
 
+import { Movie, Pagination } from "../api/movie.types";
 import { MovieCard } from "./movie-card";
 
 interface MovieGridProps {
   movies: Movie[];
-  pagination: Pagination;
+  pagination?: Pagination;
   watchlistMode?: boolean;
 }
 
 export function MovieGrid({
   movies,
-  pagination,
+  // pagination,
   watchlistMode = false,
 }: MovieGridProps) {
   return (
@@ -19,7 +20,7 @@ export function MovieGrid({
         <MovieCard
           key={movie._id}
           movie={movie}
-          pagination={pagination}
+          // pagination={pagination}
           watchlistMode={watchlistMode}
         />
       ))}

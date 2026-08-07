@@ -9,7 +9,7 @@ import { StatCard } from "@/features/admin/component/stat-card";
 import { useGetDashboardStatsQuery } from "@/features/admin/api/admin.api";
 
 export default function DashboardPage() {
-  const { data, isLoading, error } = useGetDashboardStatsQuery();
+  const { data, isLoading, error } = useGetDashboardStatsQuery(undefined);
 
   if (isLoading) return <LoadingState text="Loading dashboard..." />;
 

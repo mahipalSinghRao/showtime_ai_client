@@ -17,7 +17,7 @@ export function AiResult({ recommendations }: AiResultProps) {
 
       <div className="grid gap-8 md:grid-cols-2">
         {recommendations?.map((item) => (
-          <AiCard key={item._id} recommendation={item} />
+          <AiCard key={item.movie?._id} recommendation={item} />
         ))}
       </div>
     </section>

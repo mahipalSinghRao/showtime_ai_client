@@ -8,7 +8,7 @@ import { TrailerButton } from "../trailer/components/trailer-button";
 import { WatchlistButton } from "@/features/watchlist/components/watchlist-button";
 
 interface MovieActionsProps {
-  trailerKey?: string;
+  trailerKey: string;
   watchlistMode?: boolean;
   movieId: string;
 }

@@ -6,7 +6,7 @@ import { TrailerModal } from "./trailer-modal";
 
 interface TrailerButtonProps {
   trailerKey: string;
-  movieTitle: string;
+  movieTitle?: string;
 }
 
 export function TrailerButton({ trailerKey, movieTitle }: TrailerButtonProps) {
@@ -26,7 +26,7 @@ export function TrailerButton({ trailerKey, movieTitle }: TrailerButtonProps) {
         open={open}
         onOpenChange={setOpen}
         trailerKey={trailerKey}
-        movieTitle={movieTitle}
+        movieTitle={movieTitle ?? ""}
       />
     </>
   );

@@ -45,7 +45,7 @@ export function MovieCarousel({ title, movies }: MovieCarouselProps) {
         {/* Carousel */}
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex gap-5">
-            {movies.map((movie) => (
+            {movies?.map((movie) => (
               <div
                 key={movie._id}
                 className="min-w-0 flex-[0_0_80%] sm:flex-[0_0_45%] md:flex-[0_0_32%] lg:flex-[0_0_23%] xl:flex-[0_0_20%]"

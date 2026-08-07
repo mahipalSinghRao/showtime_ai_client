@@ -36,6 +36,7 @@ export interface Movie {
     crew: Crew[];
     isFeatured: boolean;
     isTrending: boolean;
+    productionCompanies: string[];
 }
 
 export interface Pagination {
@@ -48,7 +49,7 @@ export interface Pagination {
 }
 
 export interface MoviesResponse {
-    movie: Movie[];
+    movies: Movie[];
     pagination: Pagination;
 }
 

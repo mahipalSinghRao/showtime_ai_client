@@ -49,7 +49,7 @@ export function Navbar() {
             )}
 
             {isAuthenticated ? (
-              <DropdownMenu className="max-lg:hidden">
+              <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
@@ -87,7 +87,7 @@ export function Navbar() {
 
                   <DropdownMenuSeparator />
 
-                  <DropdownMenuItem variant="destructive">
+                  <DropdownMenuItem className="text-red-500 focus:text-red-500">
                     <LogOutIcon className="mr-2 h-4 w-4" />
                     Logout
                   </DropdownMenuItem>

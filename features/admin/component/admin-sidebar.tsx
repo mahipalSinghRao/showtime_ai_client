@@ -2,12 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Film, Users, User, CloudSync } from "lucide-react";
+import {
+  LayoutDashboard,
+  Film,
+  Users,
+  User,
+  CloudSync,
+  LogOut,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const menus = [
   {
     label: "Dashboard",
     href: "/admin/dashboard",
+    icon: LayoutDashboard,
+  },
+  {
+    label: "Visit User Dashboard",
+    href: "/",
     icon: LayoutDashboard,
   },
   {
@@ -36,30 +49,41 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="bg-card w-64 border-r">
+    <aside className="bg-card flex h-screen w-64 flex-col border-r">
       <div className="border-b p-6">
         <h2 className="text-2xl font-bold">ShowTime Admin</h2>
       </div>
 
-      <nav className="space-y-2 p-4">
-        {menus.map((menu) => {
-          const Icon = menu.icon;
-          const active = pathname === menu.href;
+      <div className="flex flex-1 flex-col justify-between">
+        <nav className="space-y-2 p-4">
+          {menus.map((menu) => {
+            const Icon = menu.icon;
+            const active = pathname === menu.href;
 
-          return (
-            <Link
-              key={menu.href}
-              href={menu.href}
-              className={`flex items-center gap-3 rounded-lg px-4 py-3 transition ${
-                active ? "bg-primary text-primary-foreground" : "hover:bg-muted"
-              }`}
-            >
-              <Icon className="h-5 w-5" />
-              <span>{menu.label}</span>
-            </Link>
-          );
-        })}
-      </nav>
+            return (
+              <Link
+                key={menu.href}
+                href={menu.href}
+                className={`flex items-center gap-3 rounded-lg px-4 py-3 transition ${
+                  active
+                    ? "bg-primary text-primary-foreground"
+                    : "hover:bg-muted"
+                }`}
+              >
+                <Icon className="h-5 w-5" />
+                <span>{menu.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="border-t p-4">
+          <Button variant="destructive" className="w-full">
+            <LogOut className="mr-2 h-4 w-4" />
+            Logout
+          </Button>
+        </div>
+      </div>
     </aside>
   );
 }

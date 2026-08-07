@@ -9,10 +9,9 @@ interface Props {
 export default function Layout({ children }: Props) {
   return (
     <>
-      <AdminLayout>{children}</AdminLayout>;
-      {/* <AdminGuard>
-      </AdminGuard> */}
+      <AdminGuard>
+        <AdminLayout>{children}</AdminLayout>;
+      </AdminGuard>
     </>
   );
-  //
 }

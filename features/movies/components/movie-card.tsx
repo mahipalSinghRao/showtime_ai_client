@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { CalendarDays, Star } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 
 import { Movie } from "../api/movie.types";
 import { MoviePoster } from "./movie-poster";
 import { RatingBadge } from "./rating-badge";
-import { Button } from "@/components/ui/button";
+
 import { WatchlistButton } from "@/features/watchlist/components/watchlist-button";
 import { TrailerButton } from "../trailer/components/trailer-button";
 
@@ -27,7 +27,6 @@ export function MovieCard({ movie, watchlistMode = false }: MovieCardProps) {
         />
       </div>
       <div className="absolute bottom-28 left-4 z-20 translate-y-4 rounded-full opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-        {/* <Button size="sm">Play</Button> */}
         <TrailerButton trailerKey={movie.trailerKey} movieTitle={movie.title} />
       </div>
       <Link href={`/movies/${movie._id}`}>

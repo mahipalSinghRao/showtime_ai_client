@@ -4,11 +4,11 @@ export type UserRole = "USER" | "ADMIN";
 
 export interface User {
     id: string;
-    name: string;
     username: string;
     email: string;
     avatar?: string;
     role: UserRole;
+    fullName: string;
 }
 
 export interface LoginRequest {
@@ -17,7 +17,8 @@ export interface LoginRequest {
 }
 
 export interface RegisterRequest {
-    name: string;
+    fullName: string;
+    username: string;
     email: string;
     password: string;
 }

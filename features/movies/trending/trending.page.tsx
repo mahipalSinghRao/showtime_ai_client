@@ -1,10 +1,10 @@
 "use client";
 
 import { Container } from "@/components/layout/container";
-import { useGetMoviesQuery, useGetTrendingMoviesQuery } from "../api/movie.api";
+import {  useGetTrendingMoviesQuery } from "../api/movie.api";
 import { MovieFilter } from "../components/movie-filter";
 import { MovieGrid } from "../components/movie-grid";
-import { MoviePagination } from "../components/movie-pagination";
+// import { MoviePagination } from "../components/movie-pagination";
 import { useMovieFilter } from "../hooks/use-movie-filter";
 import { LoadingState } from "@/components/shared/states/loading-state";
 import { ErrorState } from "@/components/shared/states/error-state";
@@ -13,15 +13,14 @@ import { EmptyState } from "@/components/shared/states/empty-state";
 export function TradingPage() {
   const {
     search,
-    debouncedSearch,
     genre,
     sort,
-    page,
+    // page,
 
     setSearch,
     setGenre,
     setSort,
-    setPage,
+    // setPage,
   } = useMovieFilter();
 
   const { data, isLoading, error } = useGetTrendingMoviesQuery();
@@ -35,7 +34,7 @@ export function TradingPage() {
   }
 
   const movies = data?.data ?? [];
-
+  console.log(data)
   return (
     <Container>
       <main className="space-y-10 py-10">
@@ -52,7 +51,7 @@ export function TradingPage() {
           <>
             <MovieGrid movies={movies} />
 
-            {data?.data?.pagination?.totalPage > 1 && (
+            {/* {movies?.pagination?.totalPage > 1 && (
               <MoviePagination
                 page={page}
                 totalPages={data?.data.pagination.totalPage ?? 1}
@@ -60,7 +59,7 @@ export function TradingPage() {
                 hasPreviousPage={data?.data.pagination.hasPreviousPage ?? false}
                 onPageChange={setPage}
               />
-            )}
+            )} */}
           </>
         ) : (
           <EmptyState

@@ -3,6 +3,7 @@ import { Film } from "lucide-react";
 interface EmptyStateProps {
   title: string;
   description?: string;
+  action?: React.ReactNode;
 }
 
 export function EmptyState({ title, description }: EmptyStateProps) {

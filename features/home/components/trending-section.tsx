@@ -28,5 +28,5 @@ export function TrendingSection() {
     );
   }
 
-  return <MovieCarousel title="Trending Movies" movies={data.data} />;
+  return <MovieCarousel title="Trending Movies" movies={data?.data ?? []} />;
 }

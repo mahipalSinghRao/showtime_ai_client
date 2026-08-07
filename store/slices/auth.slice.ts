@@ -52,12 +52,12 @@ const authSlice = createSlice({
             state.isLoading = action.payload;
         },
 
-        clearAuth: (state) => {
-            state.user = null;
-            state.accessToken = null;
-            state.isAuthenticated = false;
-            state.isLoading = false;
-        },
+        // clearAuth: (state) => {
+        //     state.user = null;
+        //     state.accessToken = null;
+        //     state.isAuthenticated = false;
+        //     state.isLoading = false;
+        // },
     }
 })
 

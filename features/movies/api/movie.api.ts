@@ -6,6 +6,8 @@ import {
     GetMoviesResponse,
     GetSimilarResponse,
     GetTrendingResponse,
+    // GetTrendingResponse,
+    MoviesResponse,
     MovieStatsResponse,
 } from "./movie.types";
 
