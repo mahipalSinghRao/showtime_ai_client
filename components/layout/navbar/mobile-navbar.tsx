@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Heart, LogOutIcon, Menu } from "lucide-react";
+import { Heart, LogOutIcon, Menu, Shield } from "lucide-react";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 import { Button } from "@/components/ui/button";
 import { useAppSelector } from "@/store/hooks";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
-import { Avatar } from "@/components/shared/avatar";
+import { useLogout } from "@/features/auth/hooks/use-logout";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -19,68 +19,97 @@ const NAV_LINKS = [
 
 export function MobileNavbar() {
   const { isAuthenticated, user } = useAppSelector((state) => state.auth);
+  const { logout, isLoading: isLoggingOut } = useLogout();
   const isAdmin = user?.role === "ADMIN";
+
   return (
     <div className="lg:hidden">
       <Sheet>
+        {/* Menu Button */}
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" className="h-10 w-10">
             <Menu className="size-5" />
+            <span className="sr-only">Open menu</span>
           </Button>
         </SheetTrigger>
 
-        <SheetContent side="left" className="flex flex-col justify-between">
-          <div className="mt-10 flex flex-col gap-2">
-            {NAV_LINKS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="hover:bg-muted rounded-lg px-3 py-2 text-sm transition"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-          {/* 
-          <div className="">
-            {isAuthenticated ? (
-              <Button variant="outline" className="w-full">
-                Welcome, {user?.fullName}{" "}
-              </Button>
-            ) : (
-              <Button asChild className="right-0 left-0 w-full">
-                <Link href="/auth/login">Login</Link>
-              </Button>
-            )}
-          </div> */}
-
-          <div className="flex flex-col items-center">
-            <ThemeToggle />
-            {isAuthenticated && (
-              <Link href="/watchlist">
-                <Button
-                  size="icon"
-                  className="h-10 w-10 rounded-full bg-black/60 backdrop-blur-md hover:bg-black/80"
+        {/* Mobile Navigation */}
+        <SheetContent
+          side="left"
+          className="flex w-[85%] max-w-sm flex-col justify-between p-0"
+        >
+          {/* Top */}
+          <div className="flex flex-col">
+            {/* Navigation */}
+            <nav className="mt-12 flex flex-col gap-1 px-4">
+              {NAV_LINKS.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="hover:bg-muted rounded-lg px-4 py-3 text-base font-medium transition-colors"
                 >
-                  <Heart className="h-5 w-5 scale-110 fill-red-500 text-red-500 transition-all duration-200" />
-                  Whishlist
-                </Button>
-              </Link>
-            )}
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
 
-            {isAuthenticated ? (
-              <div className="w-full">
-                {isAdmin && (
-                  <Button asChild className="w-full">
-                    <Link href="/admin/dashboard">Admin Dashboard</Link>
-                  </Button>
-                )}
+          {/* Bottom */}
+          <div className="border-t p-4">
+            <div className="flex flex-col gap-3">
+              {/* Theme */}
+              <div className="flex items-center justify-between rounded-lg border px-4 py-3">
+                <span className="text-sm font-medium">Appearance</span>
+
+                <ThemeToggle />
               </div>
-            ) : (
-              <Button asChild>
-                <Link href="/auth/login">Login</Link>
-              </Button>
-            )}
+
+              {isAuthenticated ? (
+                <>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-full justify-start"
+                  >
+                    <Link href="/watchlist">
+                      <Heart className="mr-2 h-5 w-5 fill-red-500 text-red-500" />
+                      Watchlist
+                    </Link>
+                  </Button>
+
+                  {isAdmin && (
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="w-full justify-start"
+                    >
+                      <Link href="/admin/dashboard">
+                        <Shield className="mr-2 h-5 w-5" />
+                        Admin Dashboard
+                      </Link>
+                    </Button>
+                  )}
+
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-full justify-start"
+                    onClick={logout}
+                    disabled={isLoggingOut}
+                  >
+                    <Link href="/">
+                      <LogOutIcon className="mr-2 h-4 w-4" />
+
+                      {isLoggingOut ? "Logging out..." : "Logout"}
+                    </Link>
+                  </Button>
+                </>
+              ) : (
+                <Button asChild className="w-full">
+                  <Link href="/auth/login">Login</Link>
+                </Button>
+              )}
+            </div>
           </div>
         </SheetContent>
       </Sheet>

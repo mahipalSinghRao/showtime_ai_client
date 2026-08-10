@@ -19,23 +19,24 @@ interface AiCardProps {
 export function AiCard({ recommendation }: AiCardProps) {
   // const movie = recommendation;
   const reason = recommendation.reason;
-  
 
   return (
     <Card className="overflow-hidden rounded-3xl border transition-all hover:shadow-xl">
       <div className="grid md:grid-cols-[220px_1fr]">
-        {/* Poster */}
         <div className="p-5">
-          <MoviePoster posterPath={recommendation?.movie?.posterPath} title={recommendation?.movie?.title} />
+          <MoviePoster
+            posterPath={recommendation?.movie?.posterPath}
+            title={recommendation?.movie?.title}
+          />
         </div>
 
-        {/* Content */}
         <CardContent className="flex flex-col justify-between p-6">
           <div className="space-y-5">
-            {/* Header */}
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-bold">{recommendation?.movie.title}</h2>
+                <h2 className="text-2xl font-bold">
+                  {recommendation?.movie.title}
+                </h2>
 
                 <div className="mt-2 flex flex-wrap gap-2">
                   {recommendation?.movie?.genres.map((genre) => (
@@ -52,12 +53,10 @@ export function AiCard({ recommendation }: AiCardProps) {
               <RatingBadge rating={recommendation?.movie.voteAverage || 0} />
             </div>
 
-            {/* Overview */}
             <p className="text-muted-foreground line-clamp-3">
               {recommendation?.movie.overview}
             </p>
 
-            {/* AI Reason */}
             <div className="bg-primary/5 rounded-xl border p-4">
               <div className="text-primary mb-2 flex items-center gap-2 font-semibold">
                 <Sparkles className="size-4" />
@@ -70,7 +69,6 @@ export function AiCard({ recommendation }: AiCardProps) {
             </div>
           </div>
 
-          {/* Footer */}
           <div className="mt-8 flex gap-3">
             <Button asChild>
               <Link href={`/movies/${recommendation?.movie._id}`}>

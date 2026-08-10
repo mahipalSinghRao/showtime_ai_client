@@ -15,21 +15,29 @@ import { useRecommendMoviesMutation } from "../api/ai.api";
 
 export function AiPage() {
   const [recommendMovies, { isLoading }] = useRecommendMoviesMutation();
-
+  const [prompt, setPrompt] = useState("");
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
 
   return (
     <Container>
-      <div className="mx-auto max-w-6xl space-y-12 py-16">
+      <div className="mx-auto flex w-full max-w-6xl flex-col space-y-12 py-16">
         <AiHero />
 
-        <AiInput
-          recommendMovies={recommendMovies}
-          isLoading={isLoading}
-          onSuccess={setRecommendations}
-        />
+        <div className="mt-2 flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+          <div className="w-full lg:w-2/3">
+            <AiInput
+              prompt={prompt}
+              setPrompt={setPrompt}
+              recommendMovies={recommendMovies}
+              isLoading={isLoading}
+              onSuccess={setRecommendations}
+            />
+          </div>
 
-        <AiSuggestions />
+          <div className="w-full lg:w-1/3">
+            <AiSuggestions onSelect={setPrompt} />
+          </div>
+        </div>
 
         {isLoading && <AiLoading />}
 

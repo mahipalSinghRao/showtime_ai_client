@@ -1,5 +1,6 @@
 import { baseApi } from "@/store/api/baseApi";
 import { SyncMoviePayload, SyncMovieResponse } from "../types";
+import { ApiResponse } from "@/types/api";
 
 export const adminApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -24,11 +25,21 @@ export const adminApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["Movies"],
         }),
+
+        logout: builder.mutation<ApiResponse<null>, void>({
+            query: () => ({
+                url: "/auth/logout",
+                method: "POST",
+            }),
+            invalidatesTags: ["Auth", "User", "Watchlist"],
+        }),
     }),
 })
 
 
 export const {
     useGetDashboardStatsQuery,
-    useSyncMoviesMutation
+    useSyncMoviesMutation,
+    useLogoutMutation,
+
 } = adminApi;
