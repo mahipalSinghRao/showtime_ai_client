@@ -17,32 +17,34 @@ interface AiCardProps {
 }
 
 export function AiCard({ recommendation }: AiCardProps) {
-  // const movie = recommendation;
-  const reason = recommendation.reason;
-
   return (
-    <Card className="overflow-hidden rounded-3xl border transition-all hover:shadow-xl">
-      <div className="grid md:grid-cols-[220px_1fr]">
-        <div className="p-5">
-          <MoviePoster
-            posterPath={recommendation?.movie?.posterPath}
-            title={recommendation?.movie?.title}
-          />
+    <Card className="w-full overflow-hidden rounded-3xl border transition-all hover:shadow-xl">
+      <div className="grid grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[220px_minmax(0,1fr)]">
+        {/* Poster */}
+        <div className="flex justify-center p-4 sm:p-5 lg:block">
+          <div className="w-full max-w-full sm:max-h-full sm:max-w-full lg:max-w-none">
+            <MoviePoster
+              posterPath={recommendation?.posterPath}
+              title={recommendation?.title}
+            />
+          </div>
         </div>
 
-        <CardContent className="flex flex-col justify-between p-6">
-          <div className="space-y-5">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h2 className="text-2xl font-bold">
-                  {recommendation?.movie.title}
+        {/* Content */}
+        <CardContent className="flex min-w-0 flex-col justify-between p-4 sm:p-5 md:p-6 lg:p-6 xl:p-7">
+          <div className="min-w-0 space-y-4 sm:space-y-5">
+            {/* Title + Rating */}
+            <div className="flex min-w-0 items-start justify-between gap-3 sm:gap-4">
+              <div className="min-w-0 flex-1">
+                <h2 className="line-clamp-2 text-xl font-bold sm:text-2xl lg:text-2xl xl:text-3xl">
+                  {recommendation.title}
                 </h2>
 
                 <div className="mt-2 flex flex-wrap gap-2">
-                  {recommendation?.movie?.genres.map((genre) => (
+                  {recommendation?.genres.map((genre) => (
                     <span
                       key={genre}
-                      className="bg-primary/10 text-primary rounded-full px-3 py-1 text-xs font-medium"
+                      className="bg-primary/10 text-primary rounded-full px-2.5 py-1 text-xs font-medium sm:px-3"
                     >
                       {genre}
                     </span>
@@ -50,34 +52,42 @@ export function AiCard({ recommendation }: AiCardProps) {
                 </div>
               </div>
 
-              <RatingBadge rating={recommendation?.movie.voteAverage || 0} />
+              <div className="shrink-0">
+                <RatingBadge rating={recommendation?.voteAverage || 0} />
+              </div>
             </div>
 
-            <p className="text-muted-foreground line-clamp-3">
-              {recommendation?.movie.overview}
+            {/* Overview */}
+            <p className="text-muted-foreground line-clamp-3 text-sm leading-6 sm:text-base">
+              {recommendation?.overview}
             </p>
 
-            <div className="bg-primary/5 rounded-xl border p-4">
-              <div className="text-primary mb-2 flex items-center gap-2 font-semibold">
-                <Sparkles className="size-4" />
-                Why AI Recommended This
+            {/* AI Reason */}
+            <div className="bg-primary/5 rounded-xl border p-3 sm:p-4">
+              <div className="text-primary mb-2 flex items-start gap-2 text-sm font-semibold sm:text-base">
+                <Sparkles className="mt-0.5 size-4 shrink-0" />
+
+                <span>Why AI Recommended This</span>
               </div>
 
               <p className="text-muted-foreground text-sm leading-6">
-                {reason}
+                {recommendation?.reason}
               </p>
             </div>
           </div>
 
-          <div className="mt-8 flex gap-3">
-            <Button asChild>
-              <Link href={`/movies/${recommendation?.movie._id}`}>
+          {/* Actions */}
+          <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
+            <Button asChild className="w-full sm:w-auto">
+              <Link href={`/movies/${recommendation?._id}`}>
                 View Details
                 <ArrowRight className="ml-2 size-4" />
               </Link>
             </Button>
 
-            <WatchlistButton movieId={recommendation?.movie._id} />
+            <div className="w-full sm:w-auto">
+              <WatchlistButton movieId={recommendation?._id} />
+            </div>
           </div>
         </CardContent>
       </div>

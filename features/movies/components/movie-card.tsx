@@ -26,7 +26,7 @@ export function MovieCard({ movie, watchlistMode = false }: MovieCardProps) {
           variant={watchlistMode ? "watchlist" : "default"}
         />
       </div>
-      <div className="absolute bottom-28 left-4 z-20 translate-y-4 rounded-full opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+      <div className="absolute bottom-32 left-4 z-20 translate-y-4 rounded-full">
         <TrailerButton trailerKey={movie.trailerKey} movieTitle={movie.title} />
       </div>
       <Link href={`/movies/${movie._id}`}>

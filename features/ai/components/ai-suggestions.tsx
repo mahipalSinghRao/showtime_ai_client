@@ -3,14 +3,38 @@
 import { Button } from "@/components/ui/button";
 
 const suggestions = [
-  "🚀 Best Sci-Fi Movies",
-  "😂 Funny Comedy",
-  "😱 Horror Night",
-  "🧠 Mind Bending",
-  "💔 Emotional Drama",
-  "⚔️ Action Adventure",
-  "👨‍👩‍👧 Family Movies",
-  "❤️ Romantic Movies",
+  {
+    label: "🚀 Best Sci-Fi Movies",
+    prompt: "Best sci-fi movies",
+  },
+  {
+    label: "😂 Funny Comedy",
+    prompt: "Funny comedy movies",
+  },
+  {
+    label: "😱 Horror Night",
+    prompt: "Best horror movies for a scary night",
+  },
+  {
+    label: "🧠 Mind Bending",
+    prompt: "Mind-bending movies with complex stories",
+  },
+  {
+    label: "💔 Emotional Drama",
+    prompt: "Emotional drama movies with powerful storytelling",
+  },
+  {
+    label: "⚔️ Action Adventure",
+    prompt: "Action adventure movies with exciting stories",
+  },
+  {
+    label: "👨‍👩‍👧 Family Movies",
+    prompt: "Family-friendly movies that everyone can enjoy",
+  },
+  {
+    label: "❤️ Romantic Movies",
+    prompt: "Romantic movies with a great love story",
+  },
 ];
 
 interface AiSuggestionsProps {
@@ -27,12 +51,12 @@ export function AiSuggestions({ onSelect }: AiSuggestionsProps) {
       <div className="flex flex-wrap items-center justify-center gap-3">
         {suggestions.map((item) => (
           <Button
-            key={item}
+            key={item.label}
             variant="outline"
             className="w-44 rounded-full"
-            onClick={() => onSelect(item)}
+            onClick={() => onSelect(item.prompt)}
           >
-            {item}
+            {item.label}
           </Button>
         ))}
       </div>

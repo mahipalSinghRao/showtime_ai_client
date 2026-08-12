@@ -9,6 +9,7 @@ import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 
 import { Movie } from "@/features/movies/api/movie.types";
+import { TrailerButton } from "@/features/movies/trailer/components/trailer-button";
 
 interface HeroContentProps {
   movie: Movie;
@@ -44,10 +45,11 @@ export function HeroContent({ movie }: HeroContentProps) {
         <p className="line-clamp-4 text-lg text-gray-300">{movie.overview}</p>
 
         <div className="flex flex-wrap gap-4">
-          <Button size="lg">
-            <Play className="mr-2 h-5 w-5 fill-current" />
-            Watch Trailer
-          </Button>
+          <TrailerButton
+            trailerKey={movie.trailerKey}
+            movieTitle={movie.title}
+            name="Watch Trailer"
+          />
 
           <Button asChild variant="secondary" size="lg">
             <Link href={`/movies/${movie._id}`}>

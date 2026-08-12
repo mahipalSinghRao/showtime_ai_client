@@ -37,7 +37,7 @@ export function MovieActions({
 
   return (
     <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-      <TrailerButton trailerKey={trailerKey} />
+      <TrailerButton trailerKey={trailerKey}  name="Watch Trailer"/>
 
       <WatchlistButton
         movieId={movieId}

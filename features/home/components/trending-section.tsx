@@ -19,7 +19,9 @@ export function TrendingSection() {
     return <ErrorState message="Unable to load trending movies." />;
   }
 
-  if (!data?.data.length) {
+  const trendingMovies = data?.data?.movies ?? [];
+
+  if (trendingMovies.length === 0) {
     return (
       <EmptyState
         title="No trending movies"
@@ -28,5 +30,5 @@ export function TrendingSection() {
     );
   }
 
-  return <MovieCarousel title="Trending Movies" movies={data?.data ?? []} />;
+  return <MovieCarousel title="Trending Movies" movies={trendingMovies} />;
 }

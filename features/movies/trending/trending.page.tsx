@@ -1,10 +1,10 @@
 "use client";
 
 import { Container } from "@/components/layout/container";
-import {  useGetTrendingMoviesQuery } from "../api/movie.api";
+import { useGetTrendingMoviesQuery } from "../api/movie.api";
 import { MovieFilter } from "../components/movie-filter";
 import { MovieGrid } from "../components/movie-grid";
-// import { MoviePagination } from "../components/movie-pagination";
+import { MoviePagination } from "../components/movie-pagination";
 import { useMovieFilter } from "../hooks/use-movie-filter";
 import { LoadingState } from "@/components/shared/states/loading-state";
 import { ErrorState } from "@/components/shared/states/error-state";
@@ -15,12 +15,12 @@ export function TradingPage() {
     search,
     genre,
     sort,
-    // page,
+    page,
 
     setSearch,
     setGenre,
     setSort,
-    // setPage,
+    setPage,
   } = useMovieFilter();
 
   const { data, isLoading, error } = useGetTrendingMoviesQuery();
@@ -33,33 +33,37 @@ export function TradingPage() {
     return <ErrorState message="Unable to load movies." />;
   }
 
-  const movies = data?.data ?? [];
-  console.log(data)
+  const moviesData = data?.data.movies ?? [];
+  const moviePagination = data?.data?.pagination ?? {};
+
   return (
     <Container>
       <main className="space-y-10 py-10">
-        <MovieFilter
+        {/* <MovieFilter
           search={search}
           genre={genre}
           sort={sort}
           onSearchChange={setSearch}
           onGenreChange={setGenre}
           onSortChange={setSort}
-        />
+        /> */}
 
-        {movies.length ? (
+        {moviesData.length ? (
           <>
-            <MovieGrid movies={movies} />
+            <h1 className="mb-8 text-4xl font-bold">Trending Movie's</h1>
+            <MovieGrid movies={moviesData} />
 
-            {/* {movies?.pagination?.totalPage > 1 && (
+            {moviesData?.pagination?.totalPage > 1 && (
               <MoviePagination
                 page={page}
-                totalPages={data?.data.pagination.totalPage ?? 1}
-                hasNextPage={data?.data.pagination.hasNextPage ?? false}
-                hasPreviousPage={data?.data.pagination.hasPreviousPage ?? false}
+                totalPages={moviePagination?.totalPage ?? 1}
+                hasNextPage={moviePagination?.pagination?.hasNextPage ?? false}
+                hasPreviousPage={
+                  moviePagination?.pagination?.hasPreviousPage ?? false
+                }
                 onPageChange={setPage}
               />
-            )} */}
+            )}
           </>
         ) : (
           <EmptyState

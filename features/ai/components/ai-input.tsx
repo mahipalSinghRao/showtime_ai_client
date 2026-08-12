@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Recommendation } from "../types";
 import { useAppSelector } from "@/store/hooks";
 import { LoginRequiredDialog } from "@/features/component/login-required-dialog";
+import { toast } from "sonner";
+import { getErrorMessage } from "@/lib/error";
 
 interface AiInputProps {
   prompt: string;
@@ -42,8 +44,9 @@ export function AiInput({
       }).unwrap();
 
       onSuccess(response.data.recommendations);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error("AI recommendation failed");
+      toast.error(getErrorMessage(error));
     }
   };
 

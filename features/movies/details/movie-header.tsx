@@ -17,30 +17,23 @@ interface MovieHeaderProps {
 const IMAGE_URL = "https://image.tmdb.org/t/p/original";
 
 export function MovieHeader({ movie }: MovieHeaderProps) {
- 
   return (
     <section className="relative overflow-hidden">
-      {/* Background */}
       <div
         className="absolute inset-0 h-[700px] bg-cover bg-center"
         style={{
-          // Change to movie.backdropPath when backend supports it
           backgroundImage: `url(${IMAGE_URL}${movie.posterPath})`,
         }}
       >
-        {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
-        {/* Left Gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/20" />
 
-        {/* Bottom Gradient */}
         <div className="from-background absolute inset-0 bg-gradient-to-t via-transparent to-transparent" />
       </div>
 
       <Container>
         <div className="relative z-10 flex min-h-[650px] flex-col items-end gap-10 pt-32 pb-16 md:flex-row">
-          {/* Poster */}
           <motion.div
             initial={{
               opacity: 0,
@@ -64,7 +57,6 @@ export function MovieHeader({ movie }: MovieHeaderProps) {
             />
           </motion.div>
 
-          {/* Right Content */}
           <motion.div
             initial={{
               opacity: 0,
@@ -79,24 +71,20 @@ export function MovieHeader({ movie }: MovieHeaderProps) {
             }}
             className="flex max-w-3xl flex-1 flex-col justify-end"
           >
-            {/* Rating */}
             <div className="mb-5">
               <RatingBadge rating={movie.voteAverage} />
             </div>
 
-            {/* Title */}
             <h1 className="text-4xl leading-tight font-bold md:text-6xl">
               {movie.title}
             </h1>
 
-            {/* Tagline */}
             {movie.tagline && (
               <p className="text-muted-foreground mt-4 text-xl italic">
-                "{movie.tagline}"
+                {movie.tagline}
               </p>
             )}
 
-            {/* Genres */}
             <div className="mt-8 flex flex-wrap gap-3">
               {movie.genres.map((genre) => (
                 <span
@@ -108,7 +96,6 @@ export function MovieHeader({ movie }: MovieHeaderProps) {
               ))}
             </div>
 
-            {/* Meta */}
             <div className="text-muted-foreground mt-8 flex flex-wrap items-center gap-6 text-sm">
               <div className="flex items-center gap-2">
                 <CalendarDays className="size-4" />
@@ -127,7 +114,6 @@ export function MovieHeader({ movie }: MovieHeaderProps) {
               </span>
             </div>
 
-            {/* Actions */}
             <MovieActions trailerKey={movie.trailerKey} movieId={movie._id} />
           </motion.div>
         </div>

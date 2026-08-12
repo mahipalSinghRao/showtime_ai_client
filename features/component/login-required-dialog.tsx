@@ -48,7 +48,7 @@ export function LoginRequiredDialog({
           </Button>
 
           <Button asChild className="flex-1">
-            <Link href="/login">Login</Link>
+            <Link href="/auth/login">Login</Link>
           </Button>
         </div>
       </DialogContent>

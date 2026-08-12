@@ -7,19 +7,25 @@ import { TrailerModal } from "./trailer-modal";
 interface TrailerButtonProps {
   trailerKey: string;
   movieTitle?: string;
+  name?: string;
 }
 
-export function TrailerButton({ trailerKey, movieTitle }: TrailerButtonProps) {
+export function TrailerButton({
+  trailerKey,
+  movieTitle,
+  name,
+}: TrailerButtonProps) {
   const [open, setOpen] = useState(false);
   return (
     <>
       <Button
         onClick={() => setOpen(true)}
         disabled={!trailerKey}
-        size="lg"
+        // size="lg"
         className="gap-2"
       >
-        <Play className="h-4 w-4 fill-current" />
+        <Play className="h-2 w-2 fill-current" />
+        {name}
       </Button>
 
       <TrailerModal

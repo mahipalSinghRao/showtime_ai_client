@@ -4,10 +4,9 @@ export interface AiRequest {
     prompt: string;
 }
 
-export interface Recommendation {
-    movie: Movie;
+export type Recommendation = Movie & {
     reason: string;
-}
+};
 
 export interface AiResponse {
     statusCode: number;
