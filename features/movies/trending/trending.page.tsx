@@ -2,26 +2,26 @@
 
 import { Container } from "@/components/layout/container";
 import { useGetTrendingMoviesQuery } from "../api/movie.api";
-import { MovieFilter } from "../components/movie-filter";
+// import { MovieFilter } from "../components/movie-filter";
 import { MovieGrid } from "../components/movie-grid";
-import { MoviePagination } from "../components/movie-pagination";
-import { useMovieFilter } from "../hooks/use-movie-filter";
+// import { MoviePagination } from "../components/movie-pagination";
+// import { useMovieFilter } from "../hooks/use-movie-filter";
 import { LoadingState } from "@/components/shared/states/loading-state";
 import { ErrorState } from "@/components/shared/states/error-state";
 import { EmptyState } from "@/components/shared/states/empty-state";
 
 export function TradingPage() {
-  const {
-    search,
-    genre,
-    sort,
-    page,
+  // const {
+  //   search,
+  //   genre,
+  //   sort,
+  //   page,
 
-    setSearch,
-    setGenre,
-    setSort,
-    setPage,
-  } = useMovieFilter();
+  //   setSearch,
+  //   setGenre,
+  //   setSort,
+  //   setPage,
+  // } = useMovieFilter();
 
   const { data, isLoading, error } = useGetTrendingMoviesQuery();
 
@@ -33,8 +33,9 @@ export function TradingPage() {
     return <ErrorState message="Unable to load movies." />;
   }
 
-  const moviesData = data?.data.movies ?? [];
-  const moviePagination = data?.data?.pagination ?? {};
+  const moviesData = data?.data?.movies ?? [];
+  // const moviePagination = data?.data?.pagination;
+
 
   return (
     <Container>
@@ -53,17 +54,15 @@ export function TradingPage() {
             <h1 className="mb-8 text-4xl font-bold">Trending Movie's</h1>
             <MovieGrid movies={moviesData} />
 
-            {moviesData?.pagination?.totalPage > 1 && (
+            {/* {moviePagination?.totalPage > 1 && (
               <MoviePagination
                 page={page}
                 totalPages={moviePagination?.totalPage ?? 1}
-                hasNextPage={moviePagination?.pagination?.hasNextPage ?? false}
-                hasPreviousPage={
-                  moviePagination?.pagination?.hasPreviousPage ?? false
-                }
+                hasNextPage={moviePagination?.hasNextPage ?? false}
+                hasPreviousPage={moviePagination?.hasPreviousPage ?? false}
                 onPageChange={setPage}
               />
-            )}
+            )} */}
           </>
         ) : (
           <EmptyState

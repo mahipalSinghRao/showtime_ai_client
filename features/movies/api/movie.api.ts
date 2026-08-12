@@ -6,8 +6,7 @@ import {
     GetMoviesResponse,
     GetSimilarResponse,
     GetTrendingResponse,
-    // GetTrendingResponse,
-    MoviesResponse,
+    // MoviesResponse,
     MovieStatsResponse,
 } from "./movie.types";
 
@@ -39,9 +38,9 @@ export const movieApi = baseApi.injectEndpoints({
             providesTags: ["Movies"],
         }),
 
-        getTrendingMovies: builder.query<GetTrendingResponse, void>({
+        getTrendingMovies: builder.query<GetMoviesResponse, void>({
             query: () => ({
-                url: "/movies/trending",
+                url: "/movies/trending",    
             }),
 
             providesTags: ["Movies"],
